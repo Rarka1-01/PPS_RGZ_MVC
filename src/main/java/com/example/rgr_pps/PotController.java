@@ -1,6 +1,5 @@
 package com.example.rgr_pps;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
@@ -8,40 +7,35 @@ import javafx.scene.image.*;
 import javafx.scene.paint.Color;
 
 import java.util.Objects;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class PotController {
+public class PotController1 {
 
-    private PotModel pm = new PotModel();
+    static public PotModel pm = new PotModel();
 
     @FXML
-    private ToggleButton tb;
-    private boolean tb_f = false;
-    private boolean tmr = true;
+    static private ToggleButton tb;
+    static private boolean tb_f = false;
+    static private boolean tmr = true;
     @FXML
-    private Button B_up;
+    static private Button B_up;
     @FXML
-    private Button B_down;
+    static private Button B_down;
     @FXML
-    private Button b_update;
+    static private Button b_update;
     @FXML
-    private Label L_t_wat;
+    static private TextField TF_heat;
     @FXML
-    private Label L_v_wat;
+    static private TextField TF_wat;
     @FXML
-    private TextField TF_heat;
+    static private TextField TF_troom;
     @FXML
-    private TextField TF_wat;
+    static private TextField TF_val;
     @FXML
-    private TextField TF_troom;
-    @FXML
-    private TextField TF_val;
-    @FXML
-    private ImageView im_v;
-    private Image im;
-    private int pw = 430, ph = 558;
+    static private ImageView im_v;
+    static private Image im;
+    static private int pw = 430, ph = 558;
 
     private void drawPotWater()
     {
@@ -95,8 +89,8 @@ public class PotController {
                         else
                             ppw.setColor(j, i, Color.BLACK);
                     }
-                        else
-                            ppw.setColor(j, i, Color.BLACK);
+                    else
+                        ppw.setColor(j, i, Color.BLACK);
         }
 
         pr = img.getPixelReader();
@@ -151,15 +145,6 @@ public class PotController {
         im_v.setImage(img);
     }
 
-    private void bodyTimer()
-    {
-        pm.step(tb_f);
-
-        L_t_wat.setText("Темература воды: " + String.format("%.2f", pm.getCurrWater()));
-        L_v_wat.setText("Количество воды в кастрюле: " + String.format("%.2f", pm.getCurrVal()));
-
-    }
-
     private void messageError(String s)
     {
         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -174,162 +159,6 @@ public class PotController {
         alert.setTitle("Ошибка");
         alert.setContentText(s);
         alert.showAndWait();
-    }
-
-    @FXML
-    protected void onButtonUpdateAction()
-    {
-        double h, w, t, v;
-
-        try
-        {
-            h = Float.parseFloat(TF_heat.getText());
-
-            if(h <= 0)
-                throw new Exception("Error minus");
-
-        }catch (Exception e)
-        {
-            h = 15;
-            TF_heat.setText(Double.toString(h));
-            messageError("отдача тепла за секунуду");
-        }
-
-        try
-        {
-            w = Float.parseFloat(TF_wat.getText());
-        }catch(Exception e)
-        {
-            w = 37;
-            TF_wat.setText(Double.toString(w));
-            messageError("температура воды из-под крана");
-        }
-
-        try
-        {
-            t = Float.parseFloat(TF_troom.getText());
-        }catch (Exception e)
-        {
-            t = 26;
-            TF_troom.setText(Double.toString(t));
-            messageError("температура комнаты");
-        }
-
-        try
-        {
-            v = Float.parseFloat(TF_val.getText());
-
-            if(v < 1 || v < pm.getCurrVal())
-                throw new Exception("Error minus");
-
-        }catch (Exception e)
-        {
-            v = 5;
-            pm.setCurrVal(v);
-            TF_val.setText(Double.toString(v));
-            messageError("максимальная ёмкость кастрюли");
-        }
-
-        pm.setProperties(h, w, t, v);
-    }
-
-    @FXML
-    protected void onToggleButtonAction()
-    {
-        if(tb_f)
-        {
-            tb.setText("Включить нагрев");
-
-            tb_f = !tb_f;
-        }
-        else
-        {
-            tb.setText("Выключить нагрев");
-
-            if(tmr)
-            {
-                try {
-                    pm.setCurrVal(Float.parseFloat(TF_val.getText()));
-                }catch (Exception e) {};
-                Timer timer = new Timer();
-                Timer timer1 = new Timer();
-                drawPotWater();
-                timer.scheduleAtFixedRate(new TimerTask() {
-                    @Override
-                    public void run() {
-                        Platform.runLater(()->
-                        {
-                            bodyTimer();
-                        });
-                    }
-                }, 500, 500);
-
-                timer1.scheduleAtFixedRate(new TimerTask() {
-                    @Override
-                    public void run() {
-                        Platform.runLater(()->
-                        {
-                            drawUpdatePot();
-                        });
-                    }
-                }, 500, 500);
-
-                tmr = false;
-            }
-
-            tb_f = !tb_f;
-        }
-    }
-
-    @FXML
-    protected void buttonUpMousePres()
-    {
-        B_up.setEffect(new DropShadow());
-    }
-
-    @FXML
-    protected void buttonUpMouseUnPress()
-    {
-        B_up.setEffect(null);
-    }
-    @FXML
-    protected void buttonDownMousePres()
-    {
-        B_down.setEffect(new DropShadow());
-    }
-    @FXML
-    protected void buttonDownMouseUnPress()
-    {
-        B_down.setEffect(null);
-    }
-
-
-    @FXML
-    protected void onButtonUpAction()
-    {
-        try
-        {
-            pm.addWater();
-            addWaterPot();
-
-        }catch (Exception e)
-        {
-            messageErrorAdd("Ошибка добавления воды, катрюля будет переполнена");
-        }
-    }
-
-    @FXML
-    protected void onButtonDownAction()
-    {
-        try
-        {
-            pm.clrWater();
-            clrWaterPot();
-
-        }catch (Exception e)
-        {
-            messageErrorAdd("Ошибка опусташения кастрюли, кастрюля и так пуста!");
-        }
     }
 
 }
