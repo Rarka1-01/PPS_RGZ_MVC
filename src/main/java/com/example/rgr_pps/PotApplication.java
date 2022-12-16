@@ -8,14 +8,19 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class PotApplication extends Application {
-    static public PotModel pm = new PotModel();
-    static public PotEvent PE = null;
-    static public InfoEvent IE = null;
+
     @Override
     public void start(Stage stage) throws IOException {
+
+        PotModel pm = new PotModel();
+
         FXMLLoader fxmlLoader = new FXMLLoader(PotApplication.class.getResource("hello-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        PE = fxmlLoader.getController();
+
+        PotController pc = fxmlLoader.getController();
+        pc.drawPotWater();
+        pc.setModelAndEvent(pm);
+
         stage.setTitle("Pot");
         stage.setResizable(false);
         stage.setScene(scene);
@@ -23,7 +28,11 @@ public class PotApplication extends Application {
 
         FXMLLoader fxmlLoader1 = new FXMLLoader(PotApplication.class.getResource("info-view.fxml"));
         Scene scene1 = new Scene(fxmlLoader1.load());
-        IE = fxmlLoader1.getController();
+
+        InfoController ic = fxmlLoader1.getController();
+        ic.setModelAndEvent(pm);
+        ic.setPC(pc);
+
         Stage st1 = new Stage();
         st1.setTitle("Info");
         st1.setResizable(false);

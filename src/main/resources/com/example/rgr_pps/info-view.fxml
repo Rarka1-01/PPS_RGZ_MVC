@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="LayoutSecond" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rgr_pps.InfoEvent">
+<AnchorPane fx:id="LayoutSecond" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="293.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rgr_pps.InfoController">
    <children>
       <Label fx:id="L_v_wat" layoutX="24.0" layoutY="191.0" text="Количество воды в кастрюле:" />
       <Label fx:id="L_t_wat" layoutX="24.0" layoutY="143.0" text="Темература воды:" />

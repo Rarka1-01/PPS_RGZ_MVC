@@ -14,8 +14,15 @@ public class PotModel
 {
     public PotModel()
     {
-
+        this.ev = new Event();
+        this.start();
     }
+
+    public Event getEventObj()
+    {
+        return this.ev;
+    }
+
     public void start()
     {
         Timer timer = new Timer();
@@ -79,6 +86,8 @@ public class PotModel
                 this.currVal = 0;
         }
         else this.boil = false;
+
+        this.ev.callEvent();
     }
 
     public double getCurrWater()
@@ -116,6 +125,8 @@ public class PotModel
         this.currVal = 0;
     }
 
+    private Event ev;
+
     private boolean tb_f = false;
 
     private double c = 4200;
@@ -126,9 +137,7 @@ public class PotModel
     private double maxVal = 5;
     private double currVal = 5;
     private double currWater = 37;
-    private double temprWater = 37;
     private double temprCold = 26;
-
     private boolean boil = false;
     private double temprTap = 37;
 }
