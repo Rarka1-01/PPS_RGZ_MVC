@@ -1,100 +1,88 @@
 package com.example.rgr_pps;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 
-public class Events {
+public class PotEvent {
 
-    static public PotModel pm = new PotModel();
+    static public PotModel pm = PotApplication.pm;
     @FXML
-    public ToggleButton tb;
+    private ToggleButton tb;
     @FXML
-    public Button B_up;
+    private Button B_up;
     @FXML
-    public Button B_down;
+    private Button B_down;
     @FXML
-    public Button b_update;
+    private Button b_update;
     @FXML
-    public TextField TF_heat;
+    private TextField TF_heat;
     @FXML
-    public TextField TF_wat;
+    private TextField TF_wat;
     @FXML
-    public TextField TF_troom;
+    private TextField TF_troom;
     @FXML
-    public TextField TF_val;
+    private TextField TF_val;
     @FXML
-    public ImageView im_v;
+    private ImageView im_v;
     @FXML
-    public AnchorPane LayoutFirst;
-    @FXML
-    public Label L_t_wat;
-    @FXML
-    public Label L_v_wat;
-    @FXML
-    public ToggleButton B_test;
-    @FXML
-    public AnchorPane LayoutSecond;
+    private AnchorPane LayoutFirst;
 
     @FXML
     protected void onButtonUpdateAction()
     {
-        PotController.updateValues();
+        PotController.updateValues(TF_heat, TF_wat, TF_troom, TF_val);
     }
 
     @FXML
     protected void onToggleButtonAction()
     {
-        PotController.startStopHeat();
+        PotController.startStopHeat(tb, im_v, TF_val);
+        PotApplication.IE.started();
     }
 
     @FXML
     protected void buttonUpMousePres()
     {
-        PotController.buttonEffect(1);
+        PotController.buttonEffect(B_up, true);
     }
 
     @FXML
     protected void buttonUpMouseUnPress()
     {
-        PotController.buttonEffect(2);
+        PotController.buttonEffect(B_up, false);
     }
     @FXML
     protected void buttonDownMousePres()
     {
-        PotController.buttonEffect(3);
+        PotController.buttonEffect(B_down, true);
     }
     @FXML
     protected void buttonDownMouseUnPress()
     {
-        PotController.buttonEffect(4);
+        PotController.buttonEffect(B_down, false);
     }
-
 
     @FXML
     protected void onButtonUpAction()
     {
-        PotController.addWaterToPot();
+        PotController.addWaterToPot(im_v);
     }
 
     @FXML
     protected void onButtonDownAction()
     {
-        PotController.clearPot();
+        PotController.clearPot(im_v);
     }
 
-    @FXML
-    protected void onButtonTest()
+    public void buttonTest()
     {
-       // PotController.buttonTest();
-        //InfoController.buttonTest(LayoutSecond);
-        LayoutFirst.setStyle("-fx-background-color:  #00ff00;");
+        PotController.buttonTest(LayoutFirst);
     }
+
 }

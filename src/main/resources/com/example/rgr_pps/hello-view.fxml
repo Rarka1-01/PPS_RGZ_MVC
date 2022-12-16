@@ -7,32 +7,24 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="940.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rgr_pps.PotController">
+<AnchorPane fx:id="LayoutFirst" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="718.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.rgr_pps.PotEvent">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <TextField fx:id="TF_heat" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="787.0" layoutY="44.0" prefHeight="25.0" prefWidth="95.0" promptText="15" text="15" />
-      <Label layoutX="742.0" layoutY="19.0" text="Отдача тепла за секунду" />
-      <ImageView fx:id="im_v" fitHeight="558.0" fitWidth="430.0" layoutX="233.0" layoutY="28.0" pickOnBounds="true" />
-      <Label fx:id="L_t_wat" layoutX="14.0" layoutY="56.0" text="Темература воды:" />
-      <Label fx:id="L_v_wat" layoutX="14.0" layoutY="87.0" text="Количество воды в кастрюле:" />
-      <Label layoutX="6.0" layoutY="19.0" text="Текущее состояние системы">
-         <font>
-            <Font name="Arial Bold" size="15.0" />
-         </font>
-      </Label>
-      <Label layoutX="709.0" layoutY="79.0" text="Температура воды из-под крана" />
-      <TextField fx:id="TF_wat" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="787.0" layoutY="104.0" prefHeight="25.0" prefWidth="95.0" promptText="37" text="37" />
-      <Button fx:id="B_up" alignment="CENTER" focusTraversable="false" layoutX="752.0" layoutY="396.0" mnemonicParsing="false" onAction="#onButtonUpAction" onMouseEntered="#buttonUpMousePres" onMouseExited="#buttonUpMouseUnPress" prefHeight="66.0" prefWidth="95.0" style="-fx-background-color: #00ffff; -fx-border-color: #000000;" text="Наполнить кастрюлю на 1л" textAlignment="CENTER" wrapText="true" />
-      <Button fx:id="B_down" alignment="CENTER" focusTraversable="false" layoutX="752.0" layoutY="474.0" mnemonicParsing="false" onAction="#onButtonDownAction" onMouseEntered="#buttonDownMousePres" onMouseExited="#buttonDownMouseUnPress" prefHeight="66.0" prefWidth="95.0" style="-fx-background-color: #ff0000; -fx-border-color: #000000;" text="Опустошить кастрюлю полностью" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
-      <Label layoutX="759.0" layoutY="144.0" text="Температура комнаты" />
-      <TextField fx:id="TF_troom" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="787.0" layoutY="167.0" prefHeight="25.0" prefWidth="95.0" promptText="26" text="26" />
-      <TextField fx:id="TF_val" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="787.0" layoutY="232.0" prefHeight="25.0" prefWidth="95.0" promptText="5" text="5" />
-      <Label layoutX="695.0" layoutY="208.0" text="Максимальная ёмкость кастрюли" />
-      <ToggleButton fx:id="tb" focusTraversable="true" layoutX="744.0" layoutY="552.0" mnemonicParsing="false" onAction="#onToggleButtonAction" text="Включить нагрев" />
-      <Button fx:id="b_update" alignment="CENTER" focusTraversable="false" layoutX="752.0" layoutY="329.0" mnemonicParsing="false" onAction="#onButtonUpdateAction" prefHeight="49.0" prefWidth="95.0" text="Обновить данные" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
+      <TextField fx:id="TF_heat" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="603.0" layoutY="39.0" prefHeight="25.0" prefWidth="95.0" promptText="15" text="15" />
+      <Label layoutX="558.0" layoutY="14.0" text="Отдача тепла за секунду" />
+      <ImageView fx:id="im_v" fitHeight="558.0" fitWidth="430.0" layoutX="40.0" layoutY="28.0" pickOnBounds="true" />
+      <Label layoutX="525.0" layoutY="74.0" text="Температура воды из-под крана" />
+      <TextField fx:id="TF_wat" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="603.0" layoutY="99.0" prefHeight="25.0" prefWidth="95.0" promptText="37" text="37" />
+      <Button fx:id="B_up" alignment="CENTER" focusTraversable="false" layoutX="568.0" layoutY="391.0" mnemonicParsing="false" onAction="#onButtonUpAction" onMouseEntered="#buttonUpMousePres" onMouseExited="#buttonUpMouseUnPress" prefHeight="66.0" prefWidth="95.0" style="-fx-background-color: #00ffff; -fx-border-color: #000000;" text="Наполнить кастрюлю на 1л" textAlignment="CENTER" wrapText="true" />
+      <Button fx:id="B_down" alignment="CENTER" focusTraversable="false" layoutX="568.0" layoutY="469.0" mnemonicParsing="false" onAction="#onButtonDownAction" onMouseEntered="#buttonDownMousePres" onMouseExited="#buttonDownMouseUnPress" prefHeight="66.0" prefWidth="95.0" style="-fx-background-color: #ff0000; -fx-border-color: #000000;" text="Опустошить кастрюлю полностью" textAlignment="CENTER" textFill="WHITE" wrapText="true" />
+      <Label layoutX="575.0" layoutY="139.0" text="Температура комнаты" />
+      <TextField fx:id="TF_troom" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="603.0" layoutY="162.0" prefHeight="25.0" prefWidth="95.0" promptText="26" text="26" />
+      <TextField fx:id="TF_val" alignment="CENTER_RIGHT" focusTraversable="false" layoutX="603.0" layoutY="227.0" prefHeight="25.0" prefWidth="95.0" promptText="5" text="5" />
+      <Label layoutX="511.0" layoutY="203.0" text="Максимальная ёмкость кастрюли" />
+      <ToggleButton fx:id="tb" focusTraversable="true" layoutX="560.0" layoutY="547.0" mnemonicParsing="false" onAction="#onToggleButtonAction" text="Включить нагрев" />
+      <Button fx:id="b_update" alignment="CENTER" focusTraversable="false" layoutX="568.0" layoutY="324.0" mnemonicParsing="false" onAction="#onButtonUpdateAction" prefHeight="49.0" prefWidth="95.0" text="Обновить данные" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true" />
    </children>
 </AnchorPane>
